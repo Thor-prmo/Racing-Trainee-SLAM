@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>slam_localization</name>
+  <version>0.1.0</version>
+  <description>
+    Driverless car SLAM localization nodes.
+    Includes a bicycle-model prediction node and a Kalman-filter measurement
+    update node that associates cone observations against small_track.csv and
+    publishes RViz markers, pose, odometry, path, and TF.
+  </description>
+  <maintainer email="team@hackathon.local">Hackathon Team</maintainer>
+  <license>MIT</license>
+
+  <!-- Build tool -->
+  <buildtool_depend>ament_cmake</buildtool_depend>
+  <buildtool_depend>eigen3_cmake_module</buildtool_depend>
+
+  <!-- ROS 2 core -->
+  <depend>rclcpp</depend>
+  <depend>ament_index_cpp</depend>
+  <depend>eigen</depend>
+
+  <!-- Message types used by subscriptions / publications -->
+  <depend>std_msgs</depend>           <!-- /wheel_speed_avg  → Float32      -->
+  <depend>sensor_msgs</depend>        <!-- /imu              → Imu          -->
+  <depend>nav_msgs</depend>           <!-- /localization_2/odometry, /path  -->
+  <depend>visualization_msgs</depend> <!-- /ground_truth/track/viz → MarkerArray;
+                                           outgoing marker topics            -->
+  <depend>geometry_msgs</depend>      <!-- Pose, Point, Quaternion helpers   -->
+  <depend>tf2</depend>                <!-- angle helpers / quaternion math   -->
+  <depend>tf2_geometry_msgs</depend>  <!-- tf2::fromMsg / toMsg              -->
+  <depend>tf2_ros</depend>            <!-- map → base_link_kf TF broadcaster -->
+
+  <!-- Test dependencies (optional) -->
+  <test_depend>ament_lint_auto</test_depend>
+  <test_depend>ament_lint_common</test_depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>
